@@ -4,211 +4,795 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaitlyn's Apprenticeship Application List</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        :root {
-            --primary: #1e3a8a;
-            --primary-light: #eff6ff;
-            --border: #cbd5e1;
-            --text: #0f172a;
-        }
         body {
-            font-family: 'Garamond', 'Georgia', serif;
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
+            font-family: 'EB Garamond', 'Garamond', 'Georgia', serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .sans-font {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Custom scrollbar for table */
+        .table-responsive::-webkit-scrollbar {
+            height: 8px;
+        }
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* Alternating table row styling */
+        tbody tr:nth-child(even) {
             background-color: #f8fafc;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
         }
-        h1 {
-            color: var(--primary);
-            margin-top: 0;
-            font-size: 2.2rem;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
+        tbody tr:hover {
+            background-color: #f1f5f9;
         }
-        .controls {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        input[type="text"] {
-            padding: 8px 12px;
-            font-size: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            width: 300px;
-            font-family: inherit;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 0.95rem;
-        }
-        th, td {
-            padding: 12px 10px;
-            text-align: left;
-            border: 1px solid var(--border);
-        }
-        th {
-            background-color: var(--primary);
-            color: #ffffff;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: var(--primary-light);
-        }
-        tr:hover {
-            background-color: #e2e8f0;
-        }
-        select, input[type="date"] {
-            font-family: inherit;
-            font-size: 0.9rem;
-            padding: 4px;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-        }
-        a {
-            color: var(--primary);
-            font-weight: bold;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; padding: 0; }
+            .print-shadow-none { box-shadow: none !important; }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Kaitlyn's Apprenticeship Application List</h1>
-        <p><em>Prioritized Level 7 Solicitor & Policy Officer Apprenticeship Opportunities (2027 Entry Intake)</em></p>
-        
-        <div class="controls">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search firm, location, requirements...">
-        </div>
+<body class="p-3 sm:p-6 md:p-8 min-h-screen">
 
-        <table id="trackerTable">
-            <thead>
-                <tr>
-                    <th>Priority</th>
-                    <th>Employer / Firm</th>
-                    <th>Track / Role</th>
-                    <th>UK Location</th>
-                    <th>Salary & Cover</th>
-                    <th>Minimum Criteria</th>
-                    <th>Open Date</th>
-                    <th>Deadline</th>
-                    <th>Status</th>
-                    <th>Direct Link</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><strong>Civil Service</strong></td>
-                    <td>Policy Officer (Level 4/6)</td>
-                    <td>Nationwide (London & Regional)</td>
-                    <td>£22,000–£26,000/yr</td>
-                    <td>2–3 A-Levels (Grade C+)</td>
-                    <td>Oct 2026</td>
-                    <td>Nov 2026</td>
-                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
-                    <td><a href="https://www.civilservicejobs.service.gov.uk/" target="_blank">Apply</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><strong>Mishcon de Reya</strong></td>
-                    <td>Level 7 Solicitor</td>
-                    <td>London (Central)</td>
-                    <td>~£26,000–£28,000/yr + 100% Tuition</td>
-                    <td>BBB at A-Level (Flexible)</td>
-                    <td>01/10/2026</td>
-                    <td>15/12/2026</td>
-                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
-                    <td><a href="https://www.mishcon.com/careers/solicitor-apprenticeships/faqs" target="_blank">Apply</a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><strong>Slaughter and May</strong></td>
-                    <td>Level 7 Solicitor</td>
-                    <td>London (Central)</td>
-                    <td>~£32,000/yr + 100% Tuition</td>
-                    <td>AAB–BBB at A-Level</td>
-                    <td>12/10/2026</td>
-                    <td>06/01/2027</td>
-                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
-                    <td><a href="https://www.slaughterandmay.com/careers/early-careers/solicitor-apprenticeship-programme/" target="_blank">Apply</a></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><strong>Bird & Bird</strong></td>
-                    <td>Level 7 Solicitor</td>
-                    <td>London (Central)</td>
-                    <td>£28,000/yr + 100% Tuition</td>
-                    <td>AAB at A-Level (5 GCSEs 4+)</td>
-                    <td>02/11/2026</td>
-                    <td>29/01/2027</td>
-                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
-                    <td><a href="https://www.legalcheek.com/solicitor-apprenticeship/bird-bird/" target="_blank">Apply</a></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><strong>A&O Shearman</strong></td>
-                    <td>Level 7 Solicitor</td>
-                    <td>London (Central)</td>
-                    <td>£32,000/yr + 100% Tuition</td>
-                    <td>AAB–BBB at A-Level</td>
-                    <td>Oct 2026</td>
-                    <td>Jan 2027</td>
-                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
-                    <td><a href="https://www.aoshearman.com/en/careers/students-and-graduates/uk" target="_blank">Apply</a></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td><strong>Linklaters</strong></td>
-                    <td>Level 7 Solicitor</td>
-                    <td>London (Central)</td>
-                    <td>£30,000/yr + 100% Tuition</td>
-                    <td>AAB–BBB at A-Level</td>
-                    <td>Oct 2026</td>
-                    <td>Jan 2027</td>
-                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
-                    <td><a href="https://careers.linklaters.com/en/early-careers/solicitor-apprenticeship" target="_blank">Apply</a></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="bg-slate-900 text-white rounded-xl p-6 sm:p-8 shadow-md border border-slate-800">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs rounded-full sans-font font-medium mb-3">
+                        <i class="fa-solid fa-graduation-cap"></i> Level 7 Degree & Policy Apprenticeships (2027)
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Kaitlyn's Apprenticeship Application List</h1>
+                    <p class="text-slate-300 italic mt-1 text-base sm:text-lg">Interactive Master Tracking Console & Real-time Collaborative Hub</p>
+                </div>
+                <div class="flex flex-wrap gap-2.5 sans-font no-print">
+                    <button onclick="exportToCSV()" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition shadow">
+                        <i class="fa-solid fa-file-excel"></i> Export Google Sheet (CSV)
+                    </button>
+                    <button onclick="openAddModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition shadow">
+                        <i class="fa-solid fa-plus"></i> Add New Employer
+                    </button>
+                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition border border-slate-700">
+                        <i class="fa-solid fa-print"></i> Print / PDF
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        function filterTable() {
-            var input, filter, table, tr, td, i, j, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("trackerTable");
-            tr = table.getElementsByTagName("tr");
+    <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 sans-font no-print">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Total Tracked</p>
+                <h3 id="statTotal" class="text-2xl font-bold text-slate-800">0</h3>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">In Progress</p>
+                <h3 id="statInProgress" class="text-2xl font-bold text-amber-600">0</h3>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Submitted</p>
+                <h3 id="statSubmitted" class="text-2xl font-bold text-emerald-600">0</h3>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Closing Soon</p>
+                <h3 id="statClosingSoon" class="text-2xl font-bold text-rose-600">0</h3>
+            </div>
+        </div>
+    </div>
 
-            for (i = 1; i < tr.length; i++) {
-                tr[i].style.display = "none";
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j]) {
-                        txtValue = td[j].textContent || td[j].innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                            break;
-                        }
+    <div class="max-w-7xl mx-auto bg-white rounded-xl border border-slate-200 shadow-sm mb-6 p-4 sans-font no-print">
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <!-- Search bar -->
+            <div class="relative w-full md:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="renderTable()" placeholder="Search firm, location, requirements..." 
+                       class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                <button onclick="setFilter('ALL')" id="filterBtnALL" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white transition">All Firms</button>
+                <button onclick="setFilter('URGENT')" id="filterBtnURGENT" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Urgent & Elite</button>
+                <button onclick="setFilter('NOT_STARTED')" id="filterBtnNOT_STARTED" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Not Started</button>
+                <button onclick="setFilter('IN_PROGRESS')" id="filterBtnIN_PROGRESS" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">In Progress</button>
+                <button onclick="setFilter('SUBMITTED')" id="filterBtnSUBMITTED" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Submitted</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto bg-white rounded-xl border border-slate-200 shadow-md overflow-hidden print-shadow-none">
+        <div class="overflow-x-auto table-responsive">
+            <table class="w-full text-left border-collapse min-w-[1100px]">
+                <thead>
+                    <tr class="bg-slate-900 text-white text-sm sans-font font-semibold">
+                        <th class="p-3.5 border-b border-slate-800 w-[13%]">Priority & Tier</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[14%]">Employer / Firm</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[12%]">Track / Role</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[11%]">UK Location</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[11%]">Salary & Tuition</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[10%]">Entry Criteria</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[8%]">Open Date</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[8%]">Deadline</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[10%]">Status</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[13%]">Notes & Actions</th>
+                        <th class="p-3.5 border-b border-slate-800 w-[5%] no-print text-center">Manage</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="text-slate-800 text-sm">
+                    <!-- Dynamic rows inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="itemModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 sans-font">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b pb-4 mb-4">
+                <h3 id="modalTitle" class="text-xl font-bold text-slate-900">Add New Employer Opportunity</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-lg p-1"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="employerForm" onsubmit="saveEmployer(event)" class="space-y-4">
+                <input type="hidden" id="editIndex" value="-1">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Employer / Firm Name</label>
+                    <input type="text" id="formName" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Application Link (URL)</label>
+                    <input type="url" id="formLink" required placeholder="https://..." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Priority Rank & Tier</label>
+                        <input type="text" id="formTier" placeholder="e.g. 01 | URGENT HIGH-VALUE" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Track / Role</label>
+                        <input type="text" id="formTrack" placeholder="e.g. Solicitor Apprenticeship" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">UK Location</label>
+                        <input type="text" id="formLocation" placeholder="e.g. London" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Salary & Tuition</label>
+                        <input type="text" id="formSalary" placeholder="e.g. £28,000/yr + 100% Tuition" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Minimum Academic Criteria</label>
+                    <input type="text" id="formCriteria" placeholder="e.g. BBB at A-Level" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Open Date</label>
+                        <input type="text" id="formOpenDate" placeholder="e.g. Oct 2026" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Deadline Date</label>
+                        <input type="text" id="formDeadline" placeholder="e.g. 15/12/2026" required class="w-full px-3 py-2 border rounded-lg text-sm outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Application Status</label>
+                    <select id="formStatus" class="w-full px-3 py-2 border rounded-lg text-sm outline-none bg-white">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Submitted">Submitted</option>
+                        <option value="Interview / SJT">Interview / SJT</option>
+                        <option value="Offer">Offer Received</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Strategic Action & Notes</label>
+                    <textarea id="formNotes" rows="2" class="w-full px-3 py-2 border rounded-lg text-sm outline-none"></textarea>
+                </div>
+                <div class="flex justify-end gap-3 border-t pt-4">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 border rounded-lg text-sm text-slate-600 hover:bg-slate-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 shadow">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Default initial data set
+        const defaultApprenticeships = [
+            {
+                id: "1",
+                tier: "01 | URGENT HIGH-VALUE",
+                name: "Civil Service Jobs",
+                link: "https://www.civilservicejobs.service.gov.uk/",
+                track: "Fast Track Policy Officer (L4/6)",
+                location: "London & Regional Hubs",
+                salary: "£22,000–£26,000/yr",
+                criteria: "2–3 A-Levels (Grade C+)",
+                openDate: "Oct 2026",
+                deadline: "Nov 2026",
+                status: "Not Started",
+                notes: "Apply immediately upon portal opening. Excellent public policy baseline."
+            },
+            {
+                id: "2",
+                tier: "02 | URGENT ELITE",
+                name: "Mishcon de Reya",
+                link: "https://www.mishcon.com/careers/solicitor-apprenticeships/faqs",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (Holborn / St James's)",
+                salary: "~£26,000–£28,000/yr + 100% Tuition",
+                criteria: "BBB at A-Level (flexible)",
+                openDate: "01/10/2026",
+                deadline: "15/12/2026",
+                status: "Not Started",
+                notes: "Top priority commercial/litigation firm with strong culture."
+            },
+            {
+                id: "3",
+                tier: "03 | TOP PRESTIGE",
+                name: "Slaughter and May",
+                link: "https://www.slaughterandmay.com/careers/early-careers/solicitor-apprenticeship-programme/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "~£32,000/yr + 100% Tuition",
+                criteria: "AAB–BBB at A-Level",
+                openDate: "12/10/2026",
+                deadline: "06/01/2027",
+                status: "Not Started",
+                notes: "Premier Magic Circle equivalent. Requires SJT within 2 days of submission."
+            },
+            {
+                id: "4",
+                tier: "04 | TOP SPECIALIST",
+                name: "Charles Russell Speechlys",
+                link: "https://www.lawcareers.net/Solicitors/Charles-Russell-Speechlys-LLP",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London, Guildford, Cheltenham",
+                salary: "~£25,000–£27,000/yr + 100% Tuition",
+                criteria: "BBB at A-Level",
+                openDate: "01/10/2026",
+                deadline: "15/01/2027",
+                status: "Not Started",
+                notes: "Top-tier Private Client and Commercial firm in London."
+            },
+            {
+                id: "5",
+                tier: "05 | TOP GLOBAL",
+                name: "Bird & Bird",
+                link: "https://www.legalcheek.com/solicitor-apprenticeship/bird-bird/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "£28,000/yr + 100% Tuition",
+                criteria: "AAB at A-Level (5 GCSEs 4+)",
+                openDate: "02/11/2026",
+                deadline: "29/01/2027",
+                status: "Not Started",
+                notes: "Premier technology and IP international firm. Rolling review."
+            },
+            {
+                id: "6",
+                tier: "06 | TOP PRESTIGE",
+                name: "A&O Shearman",
+                link: "https://www.aoshearman.com/en/careers/students-and-graduates/uk",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "£32,000/yr + 100% Tuition",
+                criteria: "AAB–BBB at A-Level",
+                openDate: "Oct 2026",
+                deadline: "Jan 2027",
+                status: "Not Started",
+                notes: "Global elite powerhouse firm. Check portal weekly in October."
+            },
+            {
+                id: "7",
+                tier: "07 | TOP PRESTIGE",
+                name: "Linklaters",
+                link: "https://careers.linklaters.com/en/early-careers/solicitor-apprenticeship",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "£30,000/yr + 100% Tuition",
+                criteria: "AAB–BBB at A-Level",
+                openDate: "Oct 2026",
+                deadline: "Jan 2027",
+                status: "Not Started",
+                notes: "Global Magic Circle firm; highly structured training contract rotations."
+            },
+            {
+                id: "8",
+                tier: "08 | HIGH VALUE",
+                name: "RPC Law",
+                link: "https://www.rpc.co.uk/careers/early-careers/solicitor-apprenticeships/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London & Bristol",
+                salary: "£26,000/yr + 100% Tuition",
+                criteria: "BBB at A-Level",
+                openDate: "Sept 2026",
+                deadline: "Jan 2027",
+                status: "Not Started",
+                notes: "Acclaimed for tech, insurance, and media law."
+            },
+            {
+                id: "9",
+                tier: "09 | HIGH VALUE",
+                name: "Dentons",
+                link: "https://citycentury.co.uk/member-firms/dentons",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London & Milton Keynes",
+                salary: "~£25,000/yr + 100% Tuition",
+                criteria: "ABB at A-Level (7 GCSEs 6+)",
+                openDate: "Oct 2026",
+                deadline: "Jan 2027",
+                status: "Not Started",
+                notes: "World's largest global law firm by headcount."
+            },
+            {
+                id: "10",
+                tier: "10 | TOP GLOBAL",
+                name: "Hogan Lovells",
+                link: "https://ukearlycareers.hlc.com/what-we-offer/solicitor-apprenticeships",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London & Birmingham",
+                salary: "~£28,000–£32,000/yr + 100% Tuition",
+                criteria: "AAB at A-Level",
+                openDate: "01/11/2026",
+                deadline: "31/01/2027",
+                status: "Not Started",
+                notes: "Premier transatlantic law firm; includes Watson Glaser test."
+            },
+            {
+                id: "11",
+                tier: "11 | TOP PRIVATE WEALTH",
+                name: "Forsters",
+                link: "https://www.forsters.co.uk/early-careers/solicitor-apprenticeships",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (Mayfair / Marylebone)",
+                salary: "~£26,000–£28,000/yr + 100% Tuition",
+                criteria: "BBB at A-Level",
+                openDate: "03/09/2026",
+                deadline: "01/02/2027",
+                status: "Not Started",
+                notes: "Leading Mayfair real estate and private wealth firm."
+            },
+            {
+                id: "12",
+                tier: "12 | BEST ACCESSIBILITY",
+                name: "Ashurst",
+                link: "https://www.ashurst.com/en/careers/students-and-graduates/uk-solicitor-apprenticeship/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "£31,000/yr + 100% Tuition",
+                criteria: "CCC at A-Level (5 GCSEs 4+)",
+                openDate: "Nov 2026",
+                deadline: "13/02/2027",
+                status: "Not Started",
+                notes: "Elite international firm with lower entry grade threshold."
+            },
+            {
+                id: "13",
+                tier: "13 | TOP SALARY",
+                name: "Mayer Brown",
+                link: "https://www.mayerbrown.com/en/careers/students-and-graduates/europe/london-solicitor-apprenticeship-program",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "£30,000/yr + £3k bonus + 100% Tuition",
+                criteria: "BBB at A-Level",
+                openDate: "01/09/2026",
+                deadline: "14/02/2027",
+                status: "Not Started",
+                notes: "US/Global law firm with high starting bonus."
+            },
+            {
+                id: "14",
+                tier: "14 | HIGH VALUE",
+                name: "Irwin Mitchell",
+                link: "https://www.irwinmitchell.com/about-us/careers/apprenticeships/solicitor-apprenticeship",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London, Birmingham, Manchester, Leeds, Bristol",
+                salary: "~£22,000–£24,000/yr + 100% Tuition",
+                criteria: "120 UCAS Points (BBB)",
+                openDate: "25/01/2027",
+                deadline: "18/02/2027",
+                status: "Not Started",
+                notes: "Leading national firm with extensive practice areas."
+            },
+            {
+                id: "15",
+                tier: "15 | SOLID MID-TIER",
+                name: "Mills & Reeve",
+                link: "https://www.mills-reeve.com/careers/emerging-talent-be-part-of-it/solicitor-degree-apprenticeships/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London, Cambridge, Birmingham, Manchester, Norwich",
+                salary: "~£23,000–£25,000/yr + 100% Tuition",
+                criteria: "120 UCAS Points (BBB)",
+                openDate: "12/10/2026",
+                deadline: "18/02/2027",
+                status: "Not Started",
+                notes: "Award-winning collaborative workplace culture."
+            },
+            {
+                id: "16",
+                tier: "16 | BEST ACCESSIBILITY",
+                name: "DLA Piper",
+                link: "https://careers.dlapiper.com/early-careers/europe/uk/apprenticeships.html",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London, Birmingham, Manchester, Leeds, Sheffield",
+                salary: "~£25,000–£28,000/yr + 100% Tuition",
+                criteria: "CCC at A-Level (5 GCSEs 4+)",
+                openDate: "09/01/2027",
+                deadline: "20/02/2027",
+                status: "Not Started",
+                notes: "Top 10 global firm with accessible entry requirements."
+            },
+            {
+                id: "17",
+                tier: "17 | BEST ACCESSIBILITY",
+                name: "CMS",
+                link: "https://cmsemergingtalent.com/programmes/england-wales-ni/solicitor-apprenticeships/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London, Bristol, Sheffield, Manchester",
+                salary: "~£25,000–£28,000/yr + 100% Tuition",
+                criteria: "CCC at A-Level (3 Grade C+)",
+                openDate: "Nov 2026",
+                deadline: "28/02/2027",
+                status: "Not Started",
+                notes: "Future-facing global firm; features critical thinking tests."
+            },
+            {
+                id: "18",
+                tier: "18 | HIGH SPECIALIST",
+                name: "Farrer & Co",
+                link: "https://www.farrer.co.uk/careers/early-careers/solicitor-apprenticeship/",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (Holborn / Lincoln's Inn)",
+                salary: "~£25,000/yr + 100% Tuition",
+                criteria: "ABB–BBB at A-Level",
+                openDate: "Nov 2026",
+                deadline: "Feb 2027",
+                status: "Not Started",
+                notes: "Ultra-prestigious firm handling royal family & institutional clients."
+            },
+            {
+                id: "19",
+                tier: "19 | TOP PRESTIGE",
+                name: "Herbert Smith Freehills",
+                link: "https://careers.hsfkramer.com/global/en/uk/early-careers/solicitor-apprenticeship-programme",
+                track: "Level 7 Solicitor Apprenticeship",
+                location: "London (City of London)",
+                salary: "~£30,000/yr + 100% Tuition",
+                criteria: "AAB–BBB at A-Level",
+                openDate: "01/01/2027",
+                deadline: "31/03/2027",
+                status: "Not Started",
+                notes: "Global litigation powerhouse with extensive dispute resolution exposure."
+            }
+        ];
+
+        let currentData = [...defaultApprenticeships];
+        let currentFilter = 'ALL';
+        let db = null;
+        let auth = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'kaitlyns-apprenticeship-app';
+
+        // Initialize Firebase
+        async function initFirebase() {
+            try {
+                if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
+
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
                     }
+
+                    // Setup real-time Firestore listener following Rule 1
+                    const appColRef = collection(db, 'artifacts', appId, 'public', 'data', 'apprenticeships');
+                    onSnapshot(appColRef, (snapshot) => {
+                        if (!snapshot.empty) {
+                            const cloudItems = [];
+                            snapshot.forEach(doc => {
+                                cloudItems.push({ id: doc.id, ...doc.data() });
+                            });
+                            currentData = cloudItems;
+                            renderTable();
+                        } else {
+                            // Seed initial database
+                            saveAllToCloud(defaultApprenticeships);
+                        }
+                    }, (err) => console.log('Firestore listener info:', err));
                 }
+            } catch (e) {
+                console.log('Running in local memory mode:', e);
+            }
+            renderTable();
+        }
+
+        async function saveItemToCloud(item) {
+            if (!db) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'apprenticeships', item.id);
+                await setDoc(docRef, item);
+            } catch (err) {
+                console.error("Cloud save error:", err);
             }
         }
+
+        async function saveAllToCloud(items) {
+            if (!db) return;
+            for (const item of items) {
+                await saveItemToCloud(item);
+            }
+        }
+
+        // Window exports for HTML event handlers
+        window.currentData = currentData;
+        window.renderTable = renderTable;
+        window.setFilter = setFilter;
+        window.updateStatus = updateStatus;
+        window.updateNotes = updateNotes;
+        window.openAddModal = openAddModal;
+        window.editEmployer = editEmployer;
+        window.deleteEmployer = deleteEmployer;
+        window.closeModal = closeModal;
+        window.saveEmployer = saveEmployer;
+        window.exportToCSV = exportToCSV;
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            
+            tbody.innerHTML = '';
+
+            let filtered = currentData.filter(item => {
+                const matchesSearch = 
+                    item.name.toLowerCase().includes(searchValue) ||
+                    item.location.toLowerCase().includes(searchValue) ||
+                    item.criteria.toLowerCase().includes(searchValue) ||
+                    item.tier.toLowerCase().includes(searchValue);
+
+                if (!matchesSearch) return false;
+
+                if (currentFilter === 'ALL') return true;
+                if (currentFilter === 'URGENT') return item.tier.toLowerCase().includes('urgent');
+                if (currentFilter === 'NOT_STARTED') return item.status === 'Not Started';
+                if (currentFilter === 'IN_PROGRESS') return item.status === 'In Progress';
+                if (currentFilter === 'SUBMITTED') return item.status === 'Submitted' || item.status === 'Interview / SJT';
+
+                return true;
+            });
+
+            // Update stats
+            document.getElementById('statTotal').innerText = currentData.length;
+            document.getElementById('statInProgress').innerText = currentData.filter(i => i.status === 'In Progress').length;
+            document.getElementById('statSubmitted').innerText = currentData.filter(i => i.status === 'Submitted' || i.status === 'Interview / SJT').length;
+            document.getElementById('statClosingSoon').innerText = currentData.filter(i => i.deadline.includes('Nov 2026') || i.deadline.includes('15/12/2026') || i.deadline.includes('06/01/2027')).length;
+
+            filtered.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                
+                // Status Badge Color
+                let statusBg = 'bg-slate-100 text-slate-700 border-slate-300';
+                if (item.status === 'In Progress') statusBg = 'bg-amber-100 text-amber-800 border-amber-300';
+                if (item.status === 'Submitted') statusBg = 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                if (item.status === 'Interview / SJT') statusBg = 'bg-purple-100 text-purple-800 border-purple-300';
+
+                // Deadline Highlight
+                const isUrgentDeadline = item.deadline.includes('Nov 2026') || item.deadline.includes('15/12/2026');
+
+                tr.innerHTML = `
+                    <td class="p-3 border-b border-slate-200">
+                        <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-slate-100 text-slate-800 border border-slate-300 sans-font">
+                            ${item.tier}
+                        </span>
+                    </td>
+                    <td class="p-3 border-b border-slate-200 font-semibold text-indigo-900">
+                        <a href="${item.link}" target="_blank" class="hover:underline flex items-center gap-1.5 group">
+                            <span>${item.name}</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-indigo-600"></i>
+                        </a>
+                    </td>
+                    <td class="p-3 border-b border-slate-200 text-slate-700">${item.track}</td>
+                    <td class="p-3 border-b border-slate-200 text-slate-700">${item.location}</td>
+                    <td class="p-3 border-b border-slate-200 font-medium text-slate-900">${item.salary}</td>
+                    <td class="p-3 border-b border-slate-200 text-slate-700">${item.criteria}</td>
+                    <td class="p-3 border-b border-slate-200 text-slate-600 sans-font text-xs">${item.openDate}</td>
+                    <td class="p-3 border-b border-slate-200 sans-font text-xs ${isUrgentDeadline ? 'font-bold text-rose-600 bg-rose-50/50' : 'text-slate-700'}">
+                        ${item.deadline}
+                    </td>
+                    <td class="p-3 border-b border-slate-200 sans-font">
+                        <select onchange="updateStatus('${item.id}', this.value)" class="text-xs px-2 py-1 rounded border font-semibold outline-none cursor-pointer ${statusBg}">
+                            <option value="Not Started" ${item.status === 'Not Started' ? 'selected' : ''}>Not Started</option>
+                            <option value="In Progress" ${item.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="Submitted" ${item.status === 'Submitted' ? 'selected' : ''}>Submitted</option>
+                            <option value="Interview / SJT" ${item.status === 'Interview / SJT' ? 'selected' : ''}>Interview / SJT</option>
+                            <option value="Offer" ${item.status === 'Offer' ? 'selected' : ''}>Offer</option>
+                        </select>
+                    </td>
+                    <td class="p-3 border-b border-slate-200 text-xs italic text-slate-600">
+                        <input type="text" value="${item.notes}" onblur="updateNotes('${item.id}', this.value)" 
+                               class="w-full bg-transparent border-b border-transparent hover:border-slate-300 focus:border-indigo-500 outline-none transition py-0.5">
+                    </td>
+                    <td class="p-3 border-b border-slate-200 no-print text-center sans-font">
+                        <div class="flex justify-center gap-1.5">
+                            <button onclick="editEmployer('${item.id}')" title="Edit" class="text-slate-400 hover:text-indigo-600 p-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button onclick="deleteEmployer('${item.id}')" title="Delete" class="text-slate-400 hover:text-rose-600 p-1"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function setFilter(filterType) {
+            currentFilter = filterType;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            const activeBtn = document.getElementById(`filterBtn${filterType}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+                activeBtn.classList.add('bg-slate-900', 'text-white');
+            }
+            renderTable();
+        }
+
+        function updateStatus(id, newStatus) {
+            const item = currentData.find(i => i.id === id);
+            if (item) {
+                item.status = newStatus;
+                saveItemToCloud(item);
+                renderTable();
+            }
+        }
+
+        function updateNotes(id, newNotes) {
+            const item = currentData.find(i => i.id === id);
+            if (item && item.notes !== newNotes) {
+                item.notes = newNotes;
+                saveItemToCloud(item);
+            }
+        }
+
+        function openAddModal() {
+            document.getElementById('editIndex').value = "-1";
+            document.getElementById('employerForm').reset();
+            document.getElementById('modalTitle').innerText = "Add New Employer Opportunity";
+            document.getElementById('itemModal').classList.remove('hidden');
+        }
+
+        function editEmployer(id) {
+            const item = currentData.find(i => i.id === id);
+            if (!item) return;
+
+            document.getElementById('editIndex').value = id;
+            document.getElementById('formName').value = item.name;
+            document.getElementById('formLink').value = item.link;
+            document.getElementById('formTier').value = item.tier;
+            document.getElementById('formTrack').value = item.track;
+            document.getElementById('formLocation').value = item.location;
+            document.getElementById('formSalary').value = item.salary;
+            document.getElementById('formCriteria').value = item.criteria;
+            document.getElementById('formOpenDate').value = item.openDate;
+            document.getElementById('formDeadline').value = item.deadline;
+            document.getElementById('formStatus').value = item.status;
+            document.getElementById('formNotes').value = item.notes;
+
+            document.getElementById('modalTitle').innerText = "Edit Employer Opportunity";
+            document.getElementById('itemModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('itemModal').classList.add('hidden');
+        }
+
+        function saveEmployer(event) {
+            event.preventDefault();
+            const editId = document.getElementById('editIndex').value;
+
+            const employerData = {
+                id: editId !== "-1" ? editId : Date.now().toString(),
+                name: document.getElementById('formName').value,
+                link: document.getElementById('formLink').value,
+                tier: document.getElementById('formTier').value,
+                track: document.getElementById('formTrack').value,
+                location: document.getElementById('formLocation').value,
+                salary: document.getElementById('formSalary').value,
+                criteria: document.getElementById('formCriteria').value,
+                openDate: document.getElementById('formOpenDate').value,
+                deadline: document.getElementById('formDeadline').value,
+                status: document.getElementById('formStatus').value,
+                notes: document.getElementById('formNotes').value
+            };
+
+            if (editId !== "-1") {
+                const index = currentData.findIndex(i => i.id === editId);
+                if (index !== -1) currentData[index] = employerData;
+            } else {
+                currentData.push(employerData);
+            }
+
+            saveItemToCloud(employerData);
+            closeModal();
+            renderTable();
+        }
+
+        function deleteEmployer(id) {
+            if (confirm("Are you sure you want to remove this employer from Kaitlyn's list?")) {
+                currentData = currentData.filter(i => i.id !== id);
+                renderTable();
+            }
+        }
+
+        function exportToCSV() {
+            let csv = "Priority Rank & Tier,Employer / Firm Name,Track / Role Type,UK Office Location(s),Salary & Tuition Cover,Minimum Academic Criteria,Application Open Date,Application Deadline Date,Application Status,Strategic Action & Notes,Application Link\n";
+            
+            currentData.forEach(item => {
+                csv += `"${item.tier}","${item.name}","${item.track}","${item.location}","${item.salary}","${item.criteria}","${item.openDate}","${item.deadline}","${item.status}","${item.notes}","${item.link}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'Kaitlyns_Apprenticeship_Application_List.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Start App
+        window.onload = initFirebase;
     </script>
 </body>
 </html>
