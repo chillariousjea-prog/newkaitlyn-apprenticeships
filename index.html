@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaitlyn's Apprenticeship Application List</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #eff6ff;
+            --border: #cbd5e1;
+            --text: #0f172a;
+        }
+        body {
+            font-family: 'Garamond', 'Georgia', serif;
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            background-color: #f8fafc;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 8px 12px;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            width: 300px;
+            font-family: inherit;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        th, td {
+            padding: 12px 10px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th {
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: var(--primary-light);
+        }
+        tr:hover {
+            background-color: #e2e8f0;
+        }
+        select, input[type="date"] {
+            font-family: inherit;
+            font-size: 0.9rem;
+            padding: 4px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        a {
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kaitlyn's Apprenticeship Application List</h1>
+        <p><em>Prioritized Level 7 Solicitor & Policy Officer Apprenticeship Opportunities (2027 Entry Intake)</em></p>
+        
+        <div class="controls">
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search firm, location, requirements...">
+        </div>
+
+        <table id="trackerTable">
+            <thead>
+                <tr>
+                    <th>Priority</th>
+                    <th>Employer / Firm</th>
+                    <th>Track / Role</th>
+                    <th>UK Location</th>
+                    <th>Salary & Cover</th>
+                    <th>Minimum Criteria</th>
+                    <th>Open Date</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Direct Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Civil Service</strong></td>
+                    <td>Policy Officer (Level 4/6)</td>
+                    <td>Nationwide (London & Regional)</td>
+                    <td>£22,000–£26,000/yr</td>
+                    <td>2–3 A-Levels (Grade C+)</td>
+                    <td>Oct 2026</td>
+                    <td>Nov 2026</td>
+                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
+                    <td><a href="https://www.civilservicejobs.service.gov.uk/" target="_blank">Apply</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Mishcon de Reya</strong></td>
+                    <td>Level 7 Solicitor</td>
+                    <td>London (Central)</td>
+                    <td>~£26,000–£28,000/yr + 100% Tuition</td>
+                    <td>BBB at A-Level (Flexible)</td>
+                    <td>01/10/2026</td>
+                    <td>15/12/2026</td>
+                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
+                    <td><a href="https://www.mishcon.com/careers/solicitor-apprenticeships/faqs" target="_blank">Apply</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Slaughter and May</strong></td>
+                    <td>Level 7 Solicitor</td>
+                    <td>London (Central)</td>
+                    <td>~£32,000/yr + 100% Tuition</td>
+                    <td>AAB–BBB at A-Level</td>
+                    <td>12/10/2026</td>
+                    <td>06/01/2027</td>
+                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
+                    <td><a href="https://www.slaughterandmay.com/careers/early-careers/solicitor-apprenticeship-programme/" target="_blank">Apply</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>Bird & Bird</strong></td>
+                    <td>Level 7 Solicitor</td>
+                    <td>London (Central)</td>
+                    <td>£28,000/yr + 100% Tuition</td>
+                    <td>AAB at A-Level (5 GCSEs 4+)</td>
+                    <td>02/11/2026</td>
+                    <td>29/01/2027</td>
+                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
+                    <td><a href="https://www.legalcheek.com/solicitor-apprenticeship/bird-bird/" target="_blank">Apply</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>A&O Shearman</strong></td>
+                    <td>Level 7 Solicitor</td>
+                    <td>London (Central)</td>
+                    <td>£32,000/yr + 100% Tuition</td>
+                    <td>AAB–BBB at A-Level</td>
+                    <td>Oct 2026</td>
+                    <td>Jan 2027</td>
+                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
+                    <td><a href="https://www.aoshearman.com/en/careers/students-and-graduates/uk" target="_blank">Apply</a></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Linklaters</strong></td>
+                    <td>Level 7 Solicitor</td>
+                    <td>London (Central)</td>
+                    <td>£30,000/yr + 100% Tuition</td>
+                    <td>AAB–BBB at A-Level</td>
+                    <td>Oct 2026</td>
+                    <td>Jan 2027</td>
+                    <td><select><option>Not Started</option><option>Applied</option><option>Interview</option><option>Offer</option></select></td>
+                    <td><a href="https://careers.linklaters.com/en/early-careers/solicitor-apprenticeship" target="_blank">Apply</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("trackerTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
